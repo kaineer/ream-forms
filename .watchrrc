@@ -1,0 +1,2 @@
+watch( "test/test_.*\.rb" ) {|| system( "rake test" ) }
+watch( "lib/ream/form/.*\.rb" ) {|| system( "rake test" ) }

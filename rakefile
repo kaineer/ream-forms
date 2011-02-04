@@ -1,10 +1,12 @@
+task :default => :test
 
+desc "Run a test"
 task :test do
   require 'test/spec'
   require 'mocha'
   
   require 'redgreen'
-  require 'leftright'
+  # require 'leftright'
 
   $:.unshift( "lib" )
   $:.unshift( "test" )
