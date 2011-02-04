@@ -1,0 +1,11 @@
+* DONE Simple elements [100%]
+** DONE Form [50%]
+** DONE Input
+** DONE Simple inputs
+* TODO Input groups [0%]
+** TODO Input group [10%]
+** TODO Select
+* TODO Use of styles [0%]
+** TODO In simple inputs
+** TODO In input groups
+** TODO In forms
