@@ -15,7 +15,7 @@ module Ream
       attr_reader :opts
 
       def self.acceptable_attributes
-        @attributes ||= [ :id, :class, :style ]
+        @attributes ||= [ :id, :class, :style, :size, :length ]
       end
 
       def render

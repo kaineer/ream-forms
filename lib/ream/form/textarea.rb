@@ -8,7 +8,7 @@ module Ream
       end
 
       def render
-        "<textarea #{name_attribute}>#{value.to_s}</textarea>"
+        "<textarea #{name_attribute} #{html_attributes}>#{value.to_s}</textarea>"
       end
     end
   end

@@ -3,8 +3,8 @@ require 'ream/form'
 class LoginForm < Ream::Form::Form
   def initialize( user_object = nil )
     super( "/login" ) do |f|
-      f.text( "login[name]", user_object.name, :id => "login_id" )
-      f.password( "login[password]", :id => "login_password" )
+      f.text( "login[name]", user_object.name, :id => "login_id", :label => "Login" )
+      f.password( "login[password]", :id => "login_password", :label => "Password" )
       f.submit( "Ok" )
     end
   end
