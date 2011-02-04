@@ -1,1 +1,23 @@
 Just tired to draw <table><tr><td> each time when I need to create some form
+
+== Hierarchy ==
+
+Input
+  - Text
+  - Password
+  - Hidden
+  - Radio ?
+  - Checkbox
+  - InputGroup
+    - CheckboxGroup
+    - RadioGroup
+    - Select
+
+RenderStyle
+  - TableRenderStyle
+  - DivRenderStyle
+
+== Associations ==
+
+Form has n Inputs
+Form has 1 RenderStyle
