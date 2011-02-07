@@ -8,6 +8,6 @@ context "input type=text" do
   end
 
   it "should render with type='text' attribute" do
-    @input.render.should.include?( "type='text'" )
+    @input.render.should.include( "type='text'" )
   end
 end

@@ -8,6 +8,6 @@ context "input type=hidden" do
   end
 
   it "should render with type='hidden' attribute" do
-    @input.render.should.include?( "type='hidden'" )
+    @input.render.should.include( "type='hidden'" )
   end
 end

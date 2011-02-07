@@ -8,6 +8,6 @@ context "input type=password" do
   end
 
   it "should render with type='password' attribute" do
-    @input.render.should.include?( "type='password'" )
+    @input.render.should.include( "type='password'" )
   end
 end

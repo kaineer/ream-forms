@@ -16,7 +16,7 @@ context "default textarea" do
   end
   
   it "should contain no text inside" do
-    @textarea.render.should.include?( "><" )
+    @textarea.render.should.include( "><" )
   end
 end
 
@@ -26,7 +26,7 @@ context "textarea with name set" do
   end
 
   it "should render name atribute" do
-    @textarea.render.should.include?( "name='textarea_name'" )
+    @textarea.render.should.include( "name='textarea_name'" )
   end
 end
 
@@ -36,6 +36,6 @@ context "textarea with value set" do
   end
 
   it "should render value between tags" do
-    @textarea.render.should.include?( ">textarea_value<" )
+    @textarea.render.should.include( ">textarea_value<" )
   end
 end
