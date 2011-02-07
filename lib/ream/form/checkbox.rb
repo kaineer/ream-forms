@@ -11,14 +11,12 @@ module Ream::Form
       @checked
     end
 
-    def render
-      @tag = tag( "input" )
+    def set_attributes
       name_attribute
       value_attribute
       checked_attribute
       type_attribute
       html_attributes
-      @tag.render
     end
 
     def checked_attribute

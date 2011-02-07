@@ -23,11 +23,15 @@ module Ream
 
       def render
         @tag = tag( "input" )
+        set_attributes
+        @tag.render
+      end
+
+      def set_attributes
         name_attribute
         value_attribute
         type_attribute
         html_attributes
-        @tag.render
       end
 
       def value
