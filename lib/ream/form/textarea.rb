@@ -8,7 +8,10 @@ module Ream
       end
 
       def render
-        "<textarea #{name_attribute} #{html_attributes}>#{value.to_s}</textarea>"
+        @tag = tag( "textarea" ).text( value.to_s ).close_tag
+        name_attribute
+        html_attributes
+        @tag.render
       end
     end
   end

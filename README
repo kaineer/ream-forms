@@ -6,6 +6,7 @@ Input
   - Text
   - Password
   - Hidden
+  - Submit
   - Radio ?
   - Checkbox
   - InputGroup

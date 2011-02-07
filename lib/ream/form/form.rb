@@ -51,7 +51,9 @@ module Ream
       end
 
       def render_content
-        ""
+        @inputs.map do |input|
+          input.render 
+        end.join
       end
     end
     

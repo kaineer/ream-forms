@@ -1,6 +1,10 @@
+require 'ream/form'
+
+include Ream::Form
+
 context "default textarea" do
   setup do
-    @textarea = Ream::Form::Textarea.new
+    @textarea = Textarea.new
   end
 
   it "should start with textarea tag" do
@@ -18,7 +22,7 @@ end
 
 context "textarea with name set" do
   setup do
-    @textarea = Ream::Form::Textarea.new( "textarea_name" )
+    @textarea = Textarea.new( "textarea_name" )
   end
 
   it "should render name atribute" do
@@ -28,7 +32,7 @@ end
 
 context "textarea with value set" do
   setup do
-    @textarea = Ream::Form::Textarea.new( nil, "textarea_value" )
+    @textarea = Textarea.new( nil, "textarea_value" )
   end
 
   it "should render value between tags" do

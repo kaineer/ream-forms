@@ -1,8 +1,10 @@
 require 'ream/form'
 
+include Ream::Form
+
 context "input type=password" do
   setup do
-    @input = Ream::Form::Password.new
+    @input = Password.new
   end
 
   it "should render with type='password' attribute" do

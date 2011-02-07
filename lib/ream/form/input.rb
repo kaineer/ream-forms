@@ -1,7 +1,10 @@
+require 'ream/form/html'
 #
 module Ream
   module Form
     class Input
+      include Html
+
       def initialize( name = nil, type = :text, value = "", opts = {} )
         @name, @type, @value, @opts = name, type, value, opts
         @form = nil
@@ -19,12 +22,12 @@ module Ream
       end
 
       def render
-        [ "<input",
-          name_attribute,
-          type_attribute,
-          value_attribute,
-          html_attributes,
-          "/>" ].compact * 32.chr
+        @tag = tag( "input" )
+        name_attribute
+        value_attribute
+        type_attribute
+        html_attributes
+        @tag.render
       end
 
       def value
@@ -36,15 +39,15 @@ module Ream
       end
 
       def type_attribute
-        "type='#{@type}'"
+        @tag.attr( "type", @type )
       end
 
       def name_attribute
         case @name
-        when String then "name='#{@name}'"
+        when String then @tag.attr( "name", @name )
         when Symbol
           if @form && @form.object_string
-            "name='#{@form.object_string}[#{@name.to_s}]'"
+            @tag.attr( "name", "#{@form.object_string}[#{@name.to_s}]" )
           else
             nil
           end
@@ -53,15 +56,21 @@ module Ream
       end
 
       def value_attribute
-        value.to_s == "" ? nil : "value='#{self.value.to_s}'"
+        @tag.attr( "value", self.value.to_s ) unless value.to_s == ""
       end
 
       def html_attributes
+        @attributes = self.class.acceptable_attributes.map do |key|
+          @tag.attr( key.to_s, @opts[ key ] ) if @opts[ key ] 
+        end.compact * 32.chr
+
+=begin
         @attributes = self.class.acceptable_attributes.map do |key|
           @opts[ key ] ? "#{key.to_s}='#{@opts[key]}'" : nil
         end.compact * 32.chr
 
         @attributes == "" ? nil : @attributes
+=end
       end
 
       attr_reader :type

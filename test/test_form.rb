@@ -1,9 +1,11 @@
 require 'ream/form'
 
+include Ream::Form
+
 context "Default form" do
   setup do
     @path = "/path"
-    @form = Ream::Form::Form.new( @path )
+    @form = Form.new( @path )
   end
 
   it "should have method POST by default" do
@@ -22,11 +24,11 @@ end
 context "Form with method GET" do
   setup do 
     @path = "/"
-    @form = Ream::Form::Form.new( @path, "GET" )
+    @form = Form.new( @path, "GET" )
   end
 
   it "should render and have method='GET' fragment inside" do
-    @form.render.should.include?( "method='GET'" )
+    @form.render.should.include( "method='GET'" )
   end
 end
 
@@ -43,10 +45,24 @@ end
 
 context "Form with symbol instead of action" do
   setup do
-    @form = Ream::Form::Form.new( :object )
+    @form = Form.new( :object )
   end
 
   it "should use symbol name to create form's action" do
-    @form.render.should.include?( "/object/update" )
+    @form.render.should.include( "/object/update" )
+  end
+end
+
+context "Form with inputs in block" do
+  setup do
+    @form = Form.new( "/update/something" ) do |f|
+      f.text( "login" )
+    end
+    
+    @render = @form.render
+  end
+
+  it "should contain input" do
+    @render.should.include( "<input" )
   end
 end

@@ -1,8 +1,10 @@
 require 'ream/form'
 
+include Ream::Form
+
 context "input type=text" do
   setup do
-    @input = Ream::Form::Text.new
+    @input = Text.new
   end
 
   it "should render with type='text' attribute" do
