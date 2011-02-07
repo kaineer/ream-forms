@@ -17,9 +17,19 @@ module Ream
       end
 
       def render
-        render_group do
-          render_content
+        @tag = tag( "select" ) do |t|
+          self.values.each do |value|
+            render_item( value )
+          end 
         end
+        
+        @tag.render
+      end
+
+      def render_items
+        self.values.each do |value|
+          render_item( value )
+        end 
       end
 
       def render_group( &block )
