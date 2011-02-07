@@ -8,8 +8,8 @@ module Ream::Form
   end
 
   class Password < Input
-    def initialize( name = nil, value = "", opts = {} )
-      super( name, :password, value, opts )
+    def initialize( name = nil, opts = {} )
+      super( name, :password, "", opts )
     end
   end
 
