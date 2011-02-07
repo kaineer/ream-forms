@@ -26,6 +26,12 @@ module Ream
       def select( name = nil, values = "", opts = {} )
         self << Select.new( name, values, opts )
       end
+
+      # opts[ :checked ] - true if checkbox should be checked
+      #
+      def checkbox( name = nil, value = "", opts = {} )
+        self << Checkbox.new( name, value, opts )
+      end
     end
   end
 end
