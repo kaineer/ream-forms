@@ -6,3 +6,4 @@ require 'ream/form/textarea'
 
 require 'ream/form/select'
 require 'ream/form/checkbox_group'
+require 'ream/form/radio_group'
