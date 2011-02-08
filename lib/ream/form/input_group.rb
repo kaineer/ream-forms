@@ -20,6 +20,10 @@ module Ream
         @inputs.map( &:render ).join
       end
 
+      def item_opts( value )
+        { :checked => self.selected.include?( value.first ) }
+      end
+
       def append_item( value )
         raise "Class #{self.class.name} has no render_item method"
       end

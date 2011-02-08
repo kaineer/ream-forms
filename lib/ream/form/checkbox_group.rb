@@ -9,9 +9,7 @@ module Ream::Form
     end
 
     def append_item( value )
-      opts = {}
-      opts[ :checked ] = self.selected.include?( value.first )
-      @inputs << Checkbox.new( @name + "[]", value.first, opts )
+      @inputs << Checkbox.new( @name + "[]", value.first, item_opts( value ) )
     end
   end
 end
