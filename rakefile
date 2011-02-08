@@ -2,14 +2,6 @@ task :default => :test
 
 desc "Run a test"
 task :test do
-  require 'test/spec'
-  require 'mocha'
-  
-  require 'redgreen'
-  # require 'leftright'
-
-  $:.unshift( "lib" )
-  $:.unshift( "test" )
   Dir[ "test/**/test_*.rb" ].each do |name|
     require name
   end

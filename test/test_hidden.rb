@@ -1,6 +1,4 @@
-require 'ream/form'
-
-include Ream::Form
+require 'test/test_helper'
 
 context "input type=hidden" do
   setup do

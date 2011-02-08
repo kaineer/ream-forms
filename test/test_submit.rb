@@ -1,6 +1,4 @@
-require 'ream/form'
-
-include Ream::Form
+require 'test/test_helper'
 
 context "Submit input" do
   setup do

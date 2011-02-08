@@ -1,4 +1,4 @@
-require 'ream/form'
+require 'test/test_helper'
 
 include Ream::Form::Html
 

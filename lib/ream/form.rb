@@ -5,3 +5,4 @@ require 'ream/form/checkbox'
 require 'ream/form/textarea'
 
 require 'ream/form/select'
+require 'ream/form/checkbox_group'
