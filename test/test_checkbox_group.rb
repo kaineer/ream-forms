@@ -7,19 +7,37 @@ context "Checkbox group" do
     @render = @group.render
     @inputs = @render.scan( /<input[^>]+>/ )
     @checkboxes = @inputs.select{|i|i.include?( "'checkbox'" )}
-    @green = @checkboxes.find{|c|c.include?("value='1'")}
-    @red   = @checkboxes.find{|c|c.include?("value='2'")}
   end
 
   it "should contain two checkboxes" do
     @checkboxes.size.should == 2
   end
 
-  it "should have green checkbox checked" do
-    @green.should.include( "checked=" )
+  context ".. green checkbox" do
+    setup do
+      @green = @checkboxes.find{|c|c.include?("value='1'")}
+    end
+    
+    it "should be checked" do
+      @green.should.include( "checked=" )
+    end
+
+    it "should have name group[id][]" do
+      @green.should.include( "group[id][]" )
+    end
   end
 
-  it "should have red checkbox unchecked" do
-    @red.should.not.include( "checked=" )
+  context ".. red checkbox" do
+    setup do
+      @red   = @checkboxes.find{|c|c.include?("value='2'")}
+    end
+
+    it "should not be checked" do
+      @red.should.not.include( "checked=" )
+    end
+
+    it "should have name group[id][]" do
+      @red.should.include( "group[id][]" )
+    end
   end
 end
