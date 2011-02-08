@@ -8,13 +8,7 @@ module Ream::Form
       super( name, :checkbox_group, values, opts )
     end
 
-    def render
-      @inputs = []
-      render_items
-      @inputs.map( &:render ).join
-    end
-
-    def render_item( value )
+    def append_item( value )
       opts = {}
       opts[ :checked ] = self.selected.include?( value.first )
       @inputs << Checkbox.new( @name + "[]", value.first, opts )

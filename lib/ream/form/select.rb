@@ -1,19 +1,24 @@
-require 'ream/form/input_group'
+require 'ream/form/input'
+require 'ream/form/input_container'
 
 module Ream::Form
-  class Select < InputGroup
+  class Select < Input
+
+    include InputContainer
+
     def initialize( name = nil, values = [], opts = {} )
       super( name, :select, values, opts )
     end
 
     def render
-      @tag = tag( "select" )
-      render_items
-      
+      unless @tag
+        @tag = tag( "select" )
+        append_items
+      end
       @tag.render
     end
 
-    def render_item( value )
+    def append_item( value )
       tag = @tag.tag( "option" )
       tag.attr( :value, value.first ).text( value.last )
       tag.attr( :selected, "selected" ) if selected.include?( value.first )

@@ -67,14 +67,6 @@ module Ream
         @attributes = self.class.acceptable_attributes.map do |key|
           @tag.attr( key.to_s, @opts[ key ] ) if @opts[ key ] 
         end.compact * 32.chr
-
-=begin
-        @attributes = self.class.acceptable_attributes.map do |key|
-          @opts[ key ] ? "#{key.to_s}='#{@opts[key]}'" : nil
-        end.compact * 32.chr
-
-        @attributes == "" ? nil : @attributes
-=end
       end
 
       attr_reader :type

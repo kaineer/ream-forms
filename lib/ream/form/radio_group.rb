@@ -9,14 +9,7 @@ module Ream::Form
       super( name, :radio_group, values, opts )
     end
 
-    # NOTE: same as in CheckboxGroup
-    def render
-      @inputs = []
-      render_items
-      @inputs.map( &:render ).join
-    end
-
-    def render_item( value )
+    def append_item( value )
       opts = {}
       opts[ :checked ] = self.selected.include?( value.first )
       @inputs << Input.new( @name + "[]", :radio, value.first, opts )
