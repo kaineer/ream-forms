@@ -42,7 +42,7 @@ module Ream
       end
 
       def append_item( value )
-        raise "Class #{self.class.name} has no render_item method"
+        raise "Class #{self.class.name} has no append_item method"
       end
     end
   end
