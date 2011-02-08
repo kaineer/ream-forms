@@ -7,6 +7,10 @@ module Ream
         block.call( self ) if block_given?
       end
 
+      def render_style
+        nil
+      end
+
       def <<( input )
         @inputs << input
         input.form = self
@@ -51,6 +55,14 @@ module Ream
       end
 
       def render_content
+        render_style ? render_content_with_style : render_content_without_style
+      end
+
+      def render_content_with_style
+        render_style.render_form_content( render_content_without_style, @opts )
+      end
+
+      def render_content_without_style
         @inputs.map do |input|
           input.render 
         end.join

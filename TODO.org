@@ -2,10 +2,11 @@
 ** DONE Form [50%]
 ** DONE Input
 ** DONE Simple inputs
-* TODO Input groups [0%]
-** TODO Input group [10%]
-** TODO Select
+* DONE Input groups [100%]
+** DONE Input group [10%]
+** DONE Select
 * TODO Use of styles [0%]
 ** TODO In simple inputs
 ** TODO In input groups
 ** TODO In forms
+* TODO Items' groups inside select and input groups ?

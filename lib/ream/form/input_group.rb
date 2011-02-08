@@ -17,6 +17,23 @@ module Ream
           @inputs = []
           append_items
         end
+        
+        render_using_style
+      end
+
+      def render_using_style
+        render_style ? render_with_style : render_without_style
+      end
+
+      def render_with_style
+        render_style.render_input_group( render_items )
+      end
+
+      def render_items
+        @inputs.map{|i|render_style.render_input_group_item( i.render, @opts )}
+      end
+
+      def render_without_style
         @inputs.map( &:render ).join
       end
 

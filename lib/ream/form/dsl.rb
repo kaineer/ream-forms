@@ -32,6 +32,14 @@ module Ream
       def checkbox( name = nil, value = "", opts = {} )
         self << Checkbox.new( name, value, opts )
       end
+
+      def checkboxes( name = nil, values = [], opts = {} )
+        self << CheckboxGroup.new( name, values, opts )
+      end
+      
+      def radiobuttons( nane = nil, values = [], opts = {} )
+        self << RadioGroup.new( name, values, opts )
+      end
     end
   end
 end
