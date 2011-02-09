@@ -5,10 +5,10 @@ module Ream
         def initialize( name = nil, &block )
           @name = name
           @attributes = {}
-          @block = block
           @close_tag = false
 
           @items = []
+          block.call( self ) if block_given?
         end
 
         # Dsl part
@@ -50,7 +50,7 @@ module Ream
         end
 
         def has_content?
-          !@items.empty? || @block
+          !@items.empty?
         end
 
         def render_tag_with_attributes
@@ -64,7 +64,6 @@ module Ream
         end
 
         def render_content
-          @block.call( self ) if @block
           @items.map do |item|
             item.is_a?( Tag ) ? item.render : item.to_s
           end.join
