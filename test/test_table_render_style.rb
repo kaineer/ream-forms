@@ -7,7 +7,7 @@ context "Form with table render style" do
   end
 
   it "should contain table" do
-    @doc.xpath( "//table" ).size.should.be == 1
+    @doc.xpath( "/form/table" ).size.should.be == 1
   end
 
   it "should contain table with one row" do
@@ -24,7 +24,7 @@ context "Form with table render style" do
     end
 
     it "should exist" do
-      @label.should.not.be.nil?
+      @label.should.not.be == nil
     end
 
     it "should have text 'button-label'" do
@@ -35,6 +35,18 @@ context "Form with table render style" do
       @label['for'].should.be == "teh_button"
     end
   end
+
+
+  context ".. first td" do
+    setup do
+      @td = @doc.xpath( "//table/tr/td" )[ 0 ]
+    end
+
+    it "shoud contain label" do
+      @td.xpath( "label" ).size.should == 1
+    end
+  end
+
 
   context ".. second td" do
     setup do
