@@ -29,5 +29,10 @@ module Ream::Form::RenderStyle
     def id_attribute( opts = {} )
       opts[ :id ] ? " id='#{opts[:id]}'" : ""
     end
+
+    def render_input_group( raw_html, opts = {} )
+puts "*** render_input_group with #{raw_html.inspect}"
+      render_input( raw_html, opts )
+    end
   end
 end

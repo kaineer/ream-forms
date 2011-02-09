@@ -58,3 +58,25 @@ context "Form with table render style" do
     end
   end
 end
+
+context "Form with input group and table render style" do
+  setup do
+    @form = ::TestFormWithInputGroup.new( RenderStyle::Table.new )
+    @doc = Nokogiri::XML( @form.render )
+puts @form.render.inspect
+  end
+
+  it "should contain form" do
+    @doc.xpath( "//form" ).size.should.be > 0
+  end
+
+  context ".. second td in tr" do
+    setup do
+      @td = @doc.xpath( "//tr/td" )[ 1 ]
+    end
+
+    it "should contain several inputs" do
+      @td.xpath( "//input" ).size.should.be > 1
+    end
+  end
+end

@@ -25,3 +25,15 @@ class ::TestForm < Form
     @render_style
   end
 end
+
+class ::TestFormWithInputGroup < Form
+  def initialize( render_style = nil )
+    super( "/someurl" ) do |f|
+      f.checkboxes( "test_boxes", [[ 1, "Red" ], [ 2, "Yellow" ], [ 3, "Green" ]], :selected => [ 2 ] )
+    end
+  end
+
+  def render_style
+    @render_style
+  end
+end
