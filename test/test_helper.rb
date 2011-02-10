@@ -31,6 +31,8 @@ class ::TestFormWithInputGroup < Form
     super( "/someurl" ) do |f|
       f.checkboxes( "test_boxes", [[ 1, "Red" ], [ 2, "Yellow" ], [ 3, "Green" ]], :selected => [ 2 ] )
     end
+
+    @render_style = render_style
   end
 
   def render_style

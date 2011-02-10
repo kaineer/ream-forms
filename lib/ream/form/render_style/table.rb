@@ -31,8 +31,12 @@ module Ream::Form::RenderStyle
     end
 
     def render_input_group( raw_html, opts = {} )
-puts "*** render_input_group with #{raw_html.inspect}"
       render_input( raw_html, opts )
     end
+
+    def render_input_group_item( raw_html, opts = {} )
+      raw_html
+    end
   end
+
 end
