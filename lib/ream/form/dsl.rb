@@ -5,8 +5,8 @@ module Ream
         self << Text.new( name, value, opts )
       end
 
-      def password( name = nil, value = "", opts = {} )
-        self << Password.new( name, value, opts )
+      def password( name = nil, opts = {} )
+        self << Password.new( name, opts )
       end
 
       def hidden( name = nil, value = "", opts = {} )

@@ -35,7 +35,7 @@ module Ream::Form::RenderStyle
     end
 
     def render_input_group_item( raw_html, opts = {} )
-      raw_html
+      raw_html + ( opts[ :last ] ? "" : "<br />" )
     end
   end
 

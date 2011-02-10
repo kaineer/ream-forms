@@ -63,7 +63,6 @@ context "Form with input group and table render style" do
   setup do
     @form = ::TestFormWithInputGroup.new( RenderStyle::Table.new )
     @doc = Nokogiri::XML( @form.render )
-puts @form.render.inspect
   end
 
   it "should contain form" do
@@ -76,7 +75,25 @@ puts @form.render.inspect
     end
 
     it "should contain several inputs" do
-      @td.xpath( "//input" ).size.should.be > 1
+      @td.xpath( "//input" ).size.should.be == 3
+    end
+
+    it "should have inputs with type checkbox" do
+      @td.xpath( "//input" )[rand(3)][ "type" ].should == "checkbox"
+    end
+
+    it "should have 5 subnodes" do
+      @td.xpath( "*" ).size.should == 5
+    end
+
+    it "should contain inputs in even places (0, 2, 4)" do
+      nodes = @td.xpath( "*" )
+      assert( [ 0, 2, 4 ].map{|i|nodes[i].name}.all?{|s| s == "input" } )
+    end
+
+    it "should contain br in odd places (1, 3)" do
+      nodes = @td.xpath( "*" )
+      assert( [ 1, 3 ].map{|i|nodes[i].name}.all?{|s| s == "br" } )
     end
   end
 end

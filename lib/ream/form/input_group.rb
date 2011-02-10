@@ -30,7 +30,10 @@ module Ream
       end
 
       def render_items
-        @inputs.map{|i|render_style.render_input_group_item( i.render, @opts )}
+        @inputs.map do |i|
+          opts = @opts.merge( :last => @inputs.last.object_id == i.object_id )
+          render_style.render_input_group_item( i.render, opts )
+        end
       end
 
       def render_without_style
