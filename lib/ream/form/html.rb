@@ -1,9 +1,9 @@
 module Ream::Form
   module Html
     class Tag
-      def initialize( name = nil, &block )
+      def initialize( name = nil, attributes = {}, &block )
         @name = name
-        @attributes = {}
+        @attributes = attributes
         @close_tag = false
 
         @items = []
@@ -37,8 +37,8 @@ module Ream::Form
         self
       end
 
-      def tag( name, &block )
-        _tag = Tag.new( name, &block )
+      def tag( name, attributes = {}, &block )
+        _tag = Tag.new( name, attributes, &block )
         @items << _tag
         _tag
       end
@@ -87,12 +87,12 @@ module Ream::Form
       end
     end
     
-    def tag( name = nil, &block )
-      Tag.new( name, &block )
+    def tag( name = nil, attributes = {}, &block )
+      Tag.new( name, attributes, &block )
     end
 
-    def empty_tag( name = nil )
-      Tag.new( name )
+    def empty_tag( name = nil, attributes = {} )
+      Tag.new( name, attributes )
     end
   end
 end

@@ -29,7 +29,7 @@ end
 class ::TestFormWithInputGroup < Form
   def initialize( render_style = nil )
     super( "/someurl" ) do |f|
-      f.checkboxes( "test_boxes", [[ 1, "Red" ], [ 2, "Yellow" ], [ 3, "Green" ]], :selected => [ 2 ] )
+      f.checkboxes( "test_boxes", [[ 1, "Red" ], [ 2, "Yellow" ], [ 3, "Green" ]], :selected => [ 2 ], :id => "teh_boxes", :label => "Colours" )
     end
 
     @render_style = render_style

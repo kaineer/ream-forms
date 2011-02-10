@@ -26,12 +26,15 @@ module Ream
       end
 
       def render_with_style
-        render_style.render_input_group( render_items )
+        render_style.render_input_group( render_items, opts )
       end
 
       def render_items
         @inputs.map do |i|
-          opts = @opts.merge( :last => @inputs.last.object_id == i.object_id )
+          opts = @opts.
+            merge( :last => @inputs.last.object_id == i.object_id,
+                   :value => i.value,
+                   :title => i.title )
           render_style.render_input_group_item( i.render, opts )
         end
       end
@@ -41,7 +44,10 @@ module Ream
       end
 
       def item_opts( value )
-        { :checked => self.selected.include?( value.first ) }
+        { :checked => self.selected.include?( value.first ),
+          :title => value.last,
+          :id => ( opts[ :id ] || "foo" ) + "_" + value.first.to_s
+        }
       end
 
       def append_item( value )

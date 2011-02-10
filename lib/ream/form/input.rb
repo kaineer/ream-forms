@@ -40,6 +40,10 @@ module Ream
         end
       end
 
+      def title
+        @opts[ :title ] || "Checkbox"
+      end
+
 
     protected
 
