@@ -23,10 +23,11 @@ context "Form with method GET" do
   setup do 
     @path = "/"
     @form = Form.new( @path, "GET" )
+    @doc = Nokogiri::XML( @form.render )
   end
 
   it "should render and have method='GET' fragment inside" do
-    @form.render.should.include( "method='GET'" )
+    @doc.xpath( "/form" ).first[ :method ].should == "GET"
   end
 end
 
@@ -51,16 +52,43 @@ context "Form with symbol instead of action" do
   end
 end
 
+context "Form with symbol instead of action and action in options hash" do
+  setup do
+    @form = Form.new( :object, :action => "/update/something" )
+    @doc = Nokogiri::XML( @form.render )
+  end
+
+  it "should have specified action" do
+    @doc.xpath( "/form" ).first[ :action ].should == "/update/something"
+  end
+end
+
+context "Form with object instead of action" do
+  setup do
+    class SampleName; end
+    @object = mock( "object" )
+    @object.stubs( :class ).returns( SampleName )
+    @object.stubs( :id ).returns( 10 )
+
+    @form = Form.new( @object )
+    @doc = Nokogiri::XML( @form.render )
+  end
+
+  it "should have action /sample_name/update/10" do
+    @doc.xpath( "/form" ).first[ :action ].should.be == "/sample_name/update/10"
+  end
+end
+
 context "Form with inputs in block" do
   setup do
     @form = Form.new( "/update/something" ) do |f|
       f.text( "login" )
     end
     
-    @render = @form.render
+    @doc = Nokogiri::XML( @form.render )
   end
 
   it "should contain input" do
-    @render.should.include( "<input" )
+    @doc.xpath( "//input" ).size.should.be == 1
   end
 end

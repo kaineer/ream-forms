@@ -3,6 +3,9 @@ module Ream
     class Form
       def initialize( action, http_method = "POST", opts = {}, &block )
         @action, @http_method, @opts = action, http_method, opts
+        if http_method.is_a?( Hash )
+          @http_method, @opts = "POST", @http_method
+        end
         @inputs = []
         block.call( self ) if block_given?
       end
@@ -34,10 +37,19 @@ module Ream
       end
 
       def action_attribute
+        attribute_value = action_attribute_from_hash || action_attribute_from_value
+        attribute_value ? "action='#{attribute_value}'" : nil
+      end
+
+      def action_attribute_from_hash
+        @opts[ :action ]
+      end
+
+      def action_attribute_from_value
         case action
-        when String   then "action='#{action}'"
-        when Symbol   then "action='/#{action.to_s}/update'"
-        else "action='/#{action_class_name}/update/#{action.id}"
+        when String   then action.to_s
+        when Symbol   then "/#{action.to_s}/update"
+        else "/#{action_class_name}/update/#{action.id}"
         end
       end
 
@@ -48,8 +60,7 @@ module Ream
       def object_string
         case @action
         when Symbol then @action.to_s
-        when String then nil
-        when NilClass then nil
+        when String, NilClass then nil
         else action_class_name
         end
       end
